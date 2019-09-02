@@ -2,14 +2,14 @@
 https://paie-api-cecile.herokuapp.com/
 
 
-#Ajouter un employé : 
+# Ajouter un employé : 
 
 
 GET / ajouterEmploye
 
-###champ matricule : 
+### champ matricule : 
 
-###champ entreprise : 
+### champ entreprise : 
 
 
 Content type : application/json
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 
-###champ profil : 
+### champ profil : 
 
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 
-###grade : 
+### grade : 
 
 {
 
@@ -84,7 +84,7 @@ Content-Type: application/json
 }
 
 
-###bouton ajouter
+### bouton ajouter
 
 POST / ajouterCollegue
 
