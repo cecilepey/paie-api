@@ -2,27 +2,27 @@
 https://paie-api-cecile.herokuapp.com/
 
 
-Ajouter un employé : 
+#Ajouter un employÃ© : 
 
 
 GET / ajouterEmploye
 
-champ matricule : 
+###champ matricule : 
 
-champ entreprise : 
+###champ entreprise : 
 
 
 Content type : application/json
 
 {
 
-"dénomination": "dénomination entreprise"
+"dÃ©nomination": "dÃ©nomination entreprise"
 
 }
 
-Réponse en cas de succès : 200
+RÃ©ponse en cas de succÃ¨s : 200
 
-Réponses en cas d'erreur : 
+RÃ©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 
-champ profil : 
+###champ profil : 
 
 
 {
@@ -41,9 +41,9 @@ champ profil :
 
 }
 
-Réponse en cas de succès : 200
+RÃ©ponse en cas de succÃ¨s : 200
 
-Réponses en cas d'erreur : 
+RÃ©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 
-grade : 
+###grade : 
 
 {
 
@@ -62,9 +62,9 @@ grade :
 
 }
 
-Réponse en cas de succès : 200
+RÃ©ponse en cas de succÃ¨s : 200
 
-Réponses en cas d'erreur : 
+RÃ©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -84,7 +84,7 @@ Content-Type: application/json
 }
 
 
-bouton ajouter
+###bouton ajouter
 
 POST / ajouterCollegue
 
@@ -92,14 +92,14 @@ content type : application/json
 
 {
 "matricule" : "matricule saisi", 
-"dénomination": : "dénomination entreprise sélectionnée", 
-"code" : "code profil sélectionné", 
-"code" : "code grade sélectionné"
+"dÃ©nomination": : "dÃ©nomination entreprise sÃ©lectionnÃ©e", 
+"code" : "code profil sÃ©lectionnÃ©", 
+"code" : "code grade sÃ©lectionnÃ©"
 }
 
-Réponse en cas de succès : 201
+RÃ©ponse en cas de succÃ¨s : 201
 
-Réponses en cas d'erreur : 
+RÃ©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
