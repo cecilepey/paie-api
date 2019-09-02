@@ -11,7 +11,7 @@ import dev.paie.entites.Entreprise;
 import dev.paie.repository.EntrepriseRepository;
 
 @Service
-public class PaieService {
+public class EntrepriseService {
 	
 	@Autowired
 	EntrepriseRepository entrepriseRepo; 
