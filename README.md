@@ -5,16 +5,16 @@ https://paie-api-cecile.herokuapp.com/
 # Ajouter un employé : 
 
 
-GET / ajouterEmploye
 
 ### champ matricule : 
 
 ### champ entreprise : 
 
-
+GET /entreprises
 Content type : application/json
 
 {
+code + libellé
 
 "dénomination": "dénomination entreprise"
 
@@ -34,9 +34,9 @@ Content-Type: application/json
 
 ### champ profil : 
 
-
+GET /profils_remunerations
 {
-
+code + libellé
 "code": "code du profil"
 
 }
@@ -55,10 +55,12 @@ Content-Type: application/json
 
 ### grade : 
 
+GET /grades
+
 {
 
 "code": "code du grade",
-"salaire annuel" : "salaire annuel (nb_heures_base*taux_base*12)"
+"salaire annuel" : "salaire annuel (nb_heures_base*taux_base*12)" --> C'est plus un format d'affichage que de données, c'est donc plus au front de faire le calcul. 
 
 }
 
@@ -92,7 +94,7 @@ content type : application/json
 
 {
 "matricule" : "matricule saisi", 
-"dénomination": : "dénomination entreprise sélectionnée", 
+"code entreprise": : "code entreprise sélectionnée", 
 "code" : "code profil sélectionné", 
 "code" : "code grade sélectionné"
 }
@@ -107,3 +109,26 @@ Content-Type: application/json
 {
     "message" : "Un champ n'est pas rempli"
 }
+Vérifier dans collegue API que le matricule existe bien avec RestTemplate.
+
+# Correction : 
+
+# Ecran : ajouter un employé
+
+GET /entreprises
+GET /profils_remuneration
+GET /grades
+
+------------------------
+GET /referentiels
+
+POST /remuneration_employes
+
+# Ecran : liste des employés
+
+GET /remuneration_employes
+
+
+
+
+
