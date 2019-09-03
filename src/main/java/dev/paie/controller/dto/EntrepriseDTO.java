@@ -12,6 +12,16 @@ public class EntrepriseDTO {
 	
 
 
+	/** Constructeur
+	 * @param code
+	 * @param denomination
+	 */
+	public EntrepriseDTO(String code, String denomination) {
+		super();
+		this.code = code;
+		this.denomination = denomination;
+	}
+
 	/** Getter
 	 * @return the code
 	 */

@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import dev.paie.controller.dto.GradeDTO;
 import dev.paie.controller.dto.RemunerationEmployeDTOGet;
 import dev.paie.controller.dto.RemunerationEmployeDTOPost;
+import dev.paie.controller.dto.RemunerationEmployeMatricule;
 import dev.paie.entites.Entreprise;
 import dev.paie.entites.Grade;
 import dev.paie.entites.ProfilRemuneration;
@@ -46,33 +47,22 @@ public class RemunerationEmployeService {
 	@Autowired
 	RemunerationEmployeRepository remunerationEmployeRepo;
 
-	public RemunerationEmploye transformerDTO(RemunerationEmployeDTOPost remunerationEmployeDTO) {
+	public RemunerationEmploye creerRemunerationEmploye(RemunerationEmployeDTOPost remunerationEmployeDTO) {
 
 		RemunerationEmploye remunerationEmploye = new RemunerationEmploye();
+		
+		Entreprise entreprise = entrepriseRepo.findAllWithCode(remunerationEmployeDTO.getIdEntreprise());
+		
+		remunerationEmploye.setEntreprise(entreprise);
 
-		List<Entreprise> listeEntreprise = entrepriseRepo.findAll();
+		
+		Grade grade = gradeRepo.findAllWithCode(remunerationEmployeDTO.getIdGrade()); 
+		
+		remunerationEmploye.setGrade(grade);
 
-		for (Entreprise entreprise : listeEntreprise) {
-			if (entreprise.getCode().equals(remunerationEmployeDTO.getIdEntreprise())) {
-				remunerationEmploye.setEntreprise(entreprise);
-			}
-		}
-
-		List<Grade> listeGrade = gradeRepo.findAll();
-
-		for (Grade grade : listeGrade) {
-			if (grade.getCode().equals(remunerationEmployeDTO.getIdGrade())) {
-				remunerationEmploye.setGrade(grade);
-			}
-		}
-
-		List<ProfilRemuneration> listeProfilRemuneration = profilRemunerationRepo.findAll();
-
-		for (ProfilRemuneration profilRemuneration : listeProfilRemuneration) {
-			if (profilRemuneration.getCode().equals(remunerationEmployeDTO.getIdProfilRemuneration())) {
-				remunerationEmploye.setProfilRemuneration(profilRemuneration);
-			}
-		}
+		ProfilRemuneration profilRemuneration = profilRemunerationRepo.findAllWithCode(remunerationEmployeDTO.getIdProfilRemuneration()); 
+		
+		remunerationEmploye.setProfilRemuneration(profilRemuneration);
 
 		remunerationEmploye.setMatricule(remunerationEmployeDTO.getMatricule());
 
@@ -91,7 +81,7 @@ public class RemunerationEmployeService {
 			Collegue result = rt.getForObject("https://cecile-top-collegue.herokuapp.com/collegues/{id}",
 					Collegue.class, matricule);
 		} catch (HttpClientErrorException httpClientErrorException) {
-			throw new CollegueInvalideException("Ce matricule n'existe pas");
+			throw new CollegueInvalideException("Ce matricule n'existe pas", httpClientErrorException);
 		}
 
 	}
@@ -120,4 +110,25 @@ public class RemunerationEmployeService {
 
 	}
 
+	
+	public List<RemunerationEmployeMatricule> afficherMatricule(){
+		
+		List<RemunerationEmploye> listeRemunerationEmploye = remunerationEmployeRepo.findAll(); 
+		
+		List<RemunerationEmployeMatricule> listeEmployeMatricules = new ArrayList<>(); 
+		
+		for (RemunerationEmploye remunerationEmploye : listeRemunerationEmploye) {
+			
+			RemunerationEmployeMatricule remunerationEmployeMatricule = new RemunerationEmployeMatricule();
+			
+			remunerationEmployeMatricule.setMatricule(remunerationEmploye.getMatricule());
+			
+			listeEmployeMatricules.add(remunerationEmployeMatricule); 
+			
+		}
+		
+		return listeEmployeMatricules; 
+		
+	}
+	
 }

@@ -23,6 +23,11 @@ public class RemunerationEmploye {
 	
 	private ZonedDateTime DateHeureCreation; 
 	
+	@PrePersist
+	public void onPersist() {
+		this.DateHeureCreation = ZonedDateTime.now();
+	}
+	
 	public String getMatricule() {
 		return matricule;
 	}

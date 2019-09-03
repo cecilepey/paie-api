@@ -2,6 +2,8 @@ package dev.paie.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +11,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.paie.controller.dto.RemunerationEmployeDTOGet;
 import dev.paie.controller.dto.RemunerationEmployeDTOPost;
+import dev.paie.controller.dto.RemunerationEmployeMatricule;
 import dev.paie.entites.RemunerationEmploye;
 import dev.paie.exception.CollegueInvalideException;
-import dev.paie.repository.RemunerationEmployeRepository;
 import dev.paie.service.RemunerationEmployeService;
 
 /**
@@ -23,20 +26,21 @@ import dev.paie.service.RemunerationEmployeService;
  *
  */
 @RestController
+@RequestMapping (value = "/remuneration_employes")
 public class RemunerationEmployeController {
 
 	@Autowired
 	RemunerationEmployeService remunerationEmployeService;
 
 
-	@PostMapping(value = "/remuneration_employes")
-	public RemunerationEmploye ajouterRemunerationEmploye(@RequestBody RemunerationEmployeDTOPost remunerationEmployeDTOPost) {
+	@PostMapping
+	public RemunerationEmploye ajouterRemunerationEmploye(@Valid @RequestBody RemunerationEmployeDTOPost remunerationEmployeDTOPost) {
 
 		String matricule = remunerationEmployeDTOPost.getMatricule();
 
 		remunerationEmployeService.validerMatricule(matricule);
 
-		RemunerationEmploye remunerationEmploye = remunerationEmployeService.transformerDTO(remunerationEmployeDTOPost);
+		RemunerationEmploye remunerationEmploye = remunerationEmployeService.creerRemunerationEmploye(remunerationEmployeDTOPost);
 
 		return remunerationEmploye;
 
@@ -49,12 +53,21 @@ public class RemunerationEmployeController {
 
 	}
 	
-	@GetMapping(value = "/remuneration_employes")
+	@GetMapping
 	public List<RemunerationEmployeDTOGet> afficherRemunerationEmploye(){
 		
 		List<RemunerationEmployeDTOGet> listeRemunerationEmployeDTOGet = remunerationEmployeService.afficherRemunerationEmployeDTOGet(); 
 		
 		return listeRemunerationEmployeDTOGet; 
+		
+	}
+	
+	@GetMapping (params = "matricules")
+	public List<RemunerationEmployeMatricule> afficherMatricule(){
+		
+		List<RemunerationEmployeMatricule> listeEmployeMatricules = remunerationEmployeService.afficherMatricule(); 
+		
+		return listeEmployeMatricules; 
 		
 	}
 

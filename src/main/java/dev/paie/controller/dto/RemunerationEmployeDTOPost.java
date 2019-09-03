@@ -3,15 +3,23 @@
  */
 package dev.paie.controller.dto;
 
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author Cécile Peyras
  *
  */
 public class RemunerationEmployeDTOPost {
 
+	@NotBlank
 	private String matricule; 
+	@NotBlank
 	private String idEntreprise; 
+	@NotBlank
 	private String idGrade; 
+	@NotBlank
 	private String idProfilRemuneration;
 	
 	

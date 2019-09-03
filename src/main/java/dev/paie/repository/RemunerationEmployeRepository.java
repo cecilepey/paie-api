@@ -11,6 +11,7 @@ import dev.paie.entites.RemunerationEmploye;
  * @author Cécile Peyras
  *
  */
-public interface RemunerationEmployeRepository extends JpaRepository<RemunerationEmploye, String> {
+public interface RemunerationEmployeRepository extends JpaRepository<RemunerationEmploye, Integer> {
+
 
 }

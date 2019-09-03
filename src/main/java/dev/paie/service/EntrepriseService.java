@@ -18,25 +18,8 @@ public class EntrepriseService {
 
 	public List<EntrepriseDTO> afficherCodeDenomination() {
 		
-		List<Entreprise> listeEntreprise = entrepriseRepo.findAll(); 	
-		
-		List<EntrepriseDTO> listeEntrepriseDTO = new ArrayList<EntrepriseDTO>(); 
-		
-		
-		
-		for (Entreprise liste : listeEntreprise) {
-			
-			EntrepriseDTO entrepriseDTO = new EntrepriseDTO(); 
-			
-			entrepriseDTO.setCode(liste.getCode());
-			entrepriseDTO.setDenomination(liste.getDenomination());
-			
-			listeEntrepriseDTO.add(entrepriseDTO); 
-			
-		}
-		
-		
-		return listeEntrepriseDTO;
+	
+		return entrepriseRepo.findAllWithCodeDenomination();
 		
 	}
 	
