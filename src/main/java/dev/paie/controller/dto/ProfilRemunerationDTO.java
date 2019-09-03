@@ -1,22 +1,11 @@
-package dev.paie.controller;
+package dev.paie.controller.dto;
 
 public class ProfilRemunerationDTO {
 
-	private Integer id;
+
 	private String code;
 	
-	/** Getter
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-	/** Setter
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
+
 	/** Getter
 	 * @return the code
 	 */

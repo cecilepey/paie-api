@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import dev.paie.controller.ProfilRemunerationDTO;
-
+import dev.paie.controller.dto.ProfilRemunerationDTO;
 import dev.paie.entites.ProfilRemuneration;
 
 import dev.paie.repository.ProfilRemunerationRepository;
@@ -18,7 +16,7 @@ public class ProfilRemunerationService {
 	@Autowired
 	ProfilRemunerationRepository ProfilRemunerationRepo; 
 
-	public List<ProfilRemunerationDTO> afficherIdCode() {
+	public List<ProfilRemunerationDTO> afficherCode() {
 		
 		List<ProfilRemuneration> listeProfilRemuneration = ProfilRemunerationRepo.findAll(); 	
 		
@@ -31,8 +29,7 @@ public class ProfilRemunerationService {
 			ProfilRemunerationDTO profilRemunerationDTO = new ProfilRemunerationDTO(); 
 			
 			profilRemunerationDTO.setCode(liste.getCode());
-			profilRemunerationDTO.setId(liste.getId());
-			
+
 			listeProfilRemunerationDTO.add(profilRemunerationDTO); 
 			
 		}

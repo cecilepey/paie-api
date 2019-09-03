@@ -1,4 +1,4 @@
-package dev.paie.controller;
+package dev.paie.controller.dto;
 
 import org.springframework.stereotype.Component;
 
