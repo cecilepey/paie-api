@@ -13,7 +13,7 @@ import dev.paie.entites.Grade;
  */
 public class RemunerationEmployeDTOGet {
 	
-	private ZonedDateTime DateHeureCreation; 
+	private ZonedDateTime dateHeureCreation; 
 	
 	private String matricule;
 	
@@ -32,9 +32,10 @@ public class RemunerationEmployeDTOGet {
 	 * @param matricule
 	 * @param grade
 	 */
-	public RemunerationEmployeDTOGet(ZonedDateTime dateHeureCreation, Grade grade) {
+	public RemunerationEmployeDTOGet(String matricule, ZonedDateTime dateHeureCreation, Grade grade) {
 		super();
-		DateHeureCreation = dateHeureCreation;
+		this.matricule = matricule; 
+		this.dateHeureCreation = dateHeureCreation;
 		
 		this.grade = grade;
 	}
@@ -43,14 +44,14 @@ public class RemunerationEmployeDTOGet {
 	 * @return the dateHeureCreation
 	 */
 	public ZonedDateTime getDateHeureCreation() {
-		return DateHeureCreation;
+		return dateHeureCreation;
 	}
 
 	/** Setter
 	 * @param dateHeureCreation the dateHeureCreation to set
 	 */
 	public void setDateHeureCreation(ZonedDateTime dateHeureCreation) {
-		DateHeureCreation = dateHeureCreation;
+		this.dateHeureCreation = dateHeureCreation;
 	}
 
 	/** Getter

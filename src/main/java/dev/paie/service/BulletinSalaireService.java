@@ -16,6 +16,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import dev.paie.controller.dto.BulletinSalaireDTO;
 import dev.paie.controller.dto.BulletinSalairePost;
 import dev.paie.controller.dto.PeriodeDTO;
+import dev.paie.controller.dto.visualisation.VisualisationBulletinSalaire;
 import dev.paie.entites.BulletinSalaire;
 import dev.paie.entites.Cotisation;
 import dev.paie.entites.Periode;
@@ -53,14 +54,14 @@ public class BulletinSalaireService {
 
 		List<BulletinSalaireDTO> listeBulletinSalaireDTO = new ArrayList<>();
 
-		for (BulletinSalaire bulletinSalaire : listeBulletinSalaire) {
-
-			
+		for (BulletinSalaire bulletinSalaire : listeBulletinSalaire) {		
 
 			//Calcul Salaire
-			BigDecimal salaireBrut = calculSalaire.calculSalaireBrut(bulletinSalaire); 
-			BigDecimal salaireNetImposable = calculSalaire.calculSalaireNetImposable(bulletinSalaire, salaireBrut); 
-			BigDecimal salaireNet = calculSalaire.calculSalaireNet(bulletinSalaire, salaireBrut, salaireNetImposable); 
+			BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut(); 
+			
+			BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable(); 
+			
+			BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet(); 
 			
 			
 			//Création du DTO
@@ -113,11 +114,11 @@ public class BulletinSalaireService {
 		
 		//Calcul du salaire
 		
-		BigDecimal salaireBrut = calculSalaire.calculSalaireBrut(bulletinSalaire); 
+		BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut(); 
 		
-		BigDecimal salaireNetImposable = calculSalaire.calculSalaireNetImposable(bulletinSalaire, salaireBrut); 
+		BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable(); 
 		
-		BigDecimal salaireNet = calculSalaire.calculSalaireNet(bulletinSalaire, salaireBrut, salaireNetImposable); 
+		BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet(); 
 
 
 		// creation du bulletin DTO pour l'affichage
@@ -131,6 +132,7 @@ public class BulletinSalaireService {
 		bulletinSalaireDTO.setMatricule(bulletinSalairePost.getMatricule());
 
 		bulletinSalaireDTO.setDateHeureCreation(ZonedDateTime.now().toString());
+		
 		bulletinSalaireDTO.setSalaireBrut(salaireBrut.toString());
 
 		bulletinSalaireDTO.setSalaireNetImposable(salaireNetImposable.toString());
@@ -140,4 +142,15 @@ public class BulletinSalaireService {
 		return bulletinSalaireDTO;
 
 	}
+	
+	public VisualisationBulletinSalaire afficherBulletinEmploye() {
+		
+		
+		
+		return null;
+		
+		
+		
+	}
+	
 }

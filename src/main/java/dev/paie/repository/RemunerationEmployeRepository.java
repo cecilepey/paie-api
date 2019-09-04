@@ -20,7 +20,7 @@ import dev.paie.entites.RemunerationEmploye;
  */
 public interface RemunerationEmployeRepository extends JpaRepository<RemunerationEmploye, Integer> {
 	
-	@Query("select new dev.paie.controller.dto.RemunerationEmployeDTOGet(r.DateHeureCreation, r.grade) from RemunerationEmploye r")
+	@Query("select new dev.paie.controller.dto.RemunerationEmployeDTOGet(r.matricule, r.DateHeureCreation, r.grade) from RemunerationEmploye r")
 	List<RemunerationEmployeDTOGet> findAllWithDateMaticulGrade();
 	
 	
