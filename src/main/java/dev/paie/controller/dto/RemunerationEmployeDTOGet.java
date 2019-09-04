@@ -19,6 +19,26 @@ public class RemunerationEmployeDTOGet {
 	
 	private Grade grade;
 
+	/** Constructeur
+	 * 
+	 */
+	public RemunerationEmployeDTOGet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/** Constructeur
+	 * @param dateHeureCreation
+	 * @param matricule
+	 * @param grade
+	 */
+	public RemunerationEmployeDTOGet(ZonedDateTime dateHeureCreation, Grade grade) {
+		super();
+		DateHeureCreation = dateHeureCreation;
+		
+		this.grade = grade;
+	}
+
 	/** Getter
 	 * @return the dateHeureCreation
 	 */

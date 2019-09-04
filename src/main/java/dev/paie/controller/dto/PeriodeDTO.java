@@ -13,6 +13,25 @@ public class PeriodeDTO {
 	
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
+	
+	
+	
+	/** Constructeur
+	 * 
+	 */
+	public PeriodeDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/** Constructeur
+	 * @param dateDebut
+	 * @param dateFin
+	 */
+	public PeriodeDTO(LocalDate dateDebut, LocalDate dateFin) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+	}
 	/** Getter
 	 * @return the dateDebut
 	 */

@@ -24,23 +24,8 @@ public class PeriodeService {
 	PeriodeRepository periodeRepo; 
 	
 	public List<PeriodeDTO> afficherPeriode(){
-		
-		List<PeriodeDTO> listePeriodeDTO = new ArrayList<>(); 
-		
-		List<Periode> listePeriode = periodeRepo.findAll(); 
-		
-		for (Periode periode : listePeriode) {
-			
-			PeriodeDTO periodeDTO = new PeriodeDTO(); 
-			
-			periodeDTO.setDateDebut(periode.getDateDebut());
-			periodeDTO.setDateFin(periode.getDateFin());
-			
-			listePeriodeDTO.add(periodeDTO); 
-			
-		}
-		
-		return listePeriodeDTO; 
+				
+		return periodeRepo.findAllWithoutId(); 
 		
 		
 	}

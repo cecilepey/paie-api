@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.paie.controller.dto.BulletinSalaireDTO;
@@ -18,12 +19,13 @@ import dev.paie.service.BulletinSalaireService;
  *
  */
 @RestController
+@RequestMapping(value = "/bulletins_salaire")
 public class BulletinSalaireController {
 	
 	@Autowired
 	BulletinSalaireService bulletinSalaireService; 
 	
-	@GetMapping (value = "/bulletins_salaire")
+	@GetMapping 
 	public List<BulletinSalaireDTO> afficherBulletin()
 	{
 		
@@ -32,12 +34,12 @@ public class BulletinSalaireController {
 		return listeBulletinDTO; 
 	}
 	
-	@PostMapping (value = "/bulletins_salaire" )
-	public BulletinSalaire ajouterBulletin (@RequestBody BulletinSalairePost bulletinSalairePost) {
+	@PostMapping 
+	public BulletinSalaireDTO ajouterBulletin (@RequestBody BulletinSalairePost bulletinSalairePost) {
 		
-		BulletinSalaire bulletinSalaire = bulletinSalaireService.transformerBulletinSalairePost(bulletinSalairePost); 
+		BulletinSalaireDTO bulletinSalaireDTO = bulletinSalaireService.creerBulletinSalaire(bulletinSalairePost); 
 		
-		return bulletinSalaire; 
+		return bulletinSalaireDTO; 
 		
 	}
 }

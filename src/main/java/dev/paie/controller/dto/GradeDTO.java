@@ -11,6 +11,20 @@ public class GradeDTO {
 	private String code;
 	
 
+	/** Constructeur
+	 * 
+	 */
+	public GradeDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/** Constructeur
+	 * @param code
+	 */
+	public GradeDTO(String code) {
+		super();
+		this.code = code;
+	}
 	/** Getter
 	 * @return the code
 	 */

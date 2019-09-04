@@ -16,7 +16,7 @@ public interface EntrepriseRepository extends JpaRepository<Entreprise, Integer>
 	@Query("select new dev.paie.controller.dto.EntrepriseDTO(e.code, e.denomination) from Entreprise e")
 	List<EntrepriseDTO> findAllWithCodeDenomination();
 	
-	@Query("select  e from Entreprise e where e.code = :code")
-	Entreprise findAllWithCode(@Param("code") String code);
+	@Query("select e from Entreprise e where e.code = :code")
+	Entreprise findEntrepriseWithCode(@Param("code") String code);
 
 }

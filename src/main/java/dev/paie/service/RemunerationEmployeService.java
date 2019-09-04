@@ -50,17 +50,16 @@ public class RemunerationEmployeService {
 	public RemunerationEmploye creerRemunerationEmploye(RemunerationEmployeDTOPost remunerationEmployeDTO) {
 
 		RemunerationEmploye remunerationEmploye = new RemunerationEmploye();
-		
-		Entreprise entreprise = entrepriseRepo.findAllWithCode(remunerationEmployeDTO.getIdEntreprise());
+			
+		Entreprise entreprise = entrepriseRepo.findEntrepriseWithCode(remunerationEmployeDTO.getCodeEntreprise()); 
 		
 		remunerationEmploye.setEntreprise(entreprise);
 
-		
-		Grade grade = gradeRepo.findAllWithCode(remunerationEmployeDTO.getIdGrade()); 
+		Grade grade = gradeRepo.findAllWithCode(remunerationEmployeDTO.getCodeGrade()); 
 		
 		remunerationEmploye.setGrade(grade);
 
-		ProfilRemuneration profilRemuneration = profilRemunerationRepo.findAllWithCode(remunerationEmployeDTO.getIdProfilRemuneration()); 
+		ProfilRemuneration profilRemuneration = profilRemunerationRepo.findProfilWithCode(remunerationEmployeDTO.getCodeProfilRemuneration()); 
 		
 		remunerationEmploye.setProfilRemuneration(profilRemuneration);
 
@@ -88,25 +87,9 @@ public class RemunerationEmployeService {
 
 	public List<RemunerationEmployeDTOGet> afficherRemunerationEmployeDTOGet() {
 
-		List<RemunerationEmploye> listeRemunerationEmploye= remunerationEmployeRepo.findAll();
 
-		List<RemunerationEmployeDTOGet> listeRemunerationEmployeDTOGet = new ArrayList<>();
-
-		for (RemunerationEmploye liste : listeRemunerationEmploye) {
-
-			RemunerationEmployeDTOGet remunerationEmployeDTOGet = new RemunerationEmployeDTOGet();
-
-			remunerationEmployeDTOGet.setDateHeureCreation(liste.getDateHeureCreation());		
-
-			remunerationEmployeDTOGet.setGrade(liste.getGrade()); 
-			
-			remunerationEmployeDTOGet.setMatricule(liste.getMatricule());
-				
-			listeRemunerationEmployeDTOGet.add(remunerationEmployeDTOGet);
-
-		}
-
-		return listeRemunerationEmployeDTOGet;
+		
+		return remunerationEmployeRepo.findAllWithDateMaticulGrade(); 
 
 	}
 

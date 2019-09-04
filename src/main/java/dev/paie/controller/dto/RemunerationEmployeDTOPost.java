@@ -16,14 +16,22 @@ public class RemunerationEmployeDTOPost {
 	@NotBlank
 	private String matricule; 
 	@NotBlank
-	private String idEntreprise; 
+	private String codeEntreprise; 
 	@NotBlank
-	private String idGrade; 
+	private String codeGrade; 
 	@NotBlank
-	private String idProfilRemuneration;
+	private String codeProfilRemuneration;
 	
 	
 	
+
+	/** Constructeur
+	 * 
+	 */
+	public RemunerationEmployeDTOPost() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	/** Getter
 	 * @return the matricule
 	 */
@@ -39,38 +47,38 @@ public class RemunerationEmployeDTOPost {
 	/** Getter
 	 * @return the idEntreprise
 	 */
-	public String getIdEntreprise() {
-		return idEntreprise;
+	public String getCodeEntreprise() {
+		return codeEntreprise;
 	}
 	/** Setter
 	 * @param idEntreprise the idEntreprise to set
 	 */
-	public void setIdEntreprise(String idEntreprise) {
-		this.idEntreprise = idEntreprise;
+	public void setCodeEntreprise(String idEntreprise) {
+		this.codeEntreprise = idEntreprise;
 	}
 	/** Getter
 	 * @return the idGrade
 	 */
-	public String getIdGrade() {
-		return idGrade;
+	public String getCodeGrade() {
+		return codeGrade;
 	}
 	/** Setter
 	 * @param idGrade the idGrade to set
 	 */
-	public void setIdGrade(String idGrade) {
-		this.idGrade = idGrade;
+	public void setCodeGrade(String idGrade) {
+		this.codeGrade = idGrade;
 	}
 	/** Getter
 	 * @return the idProfilRemuneration
 	 */
-	public String getIdProfilRemuneration() {
-		return idProfilRemuneration;
+	public String getCodeProfilRemuneration() {
+		return codeProfilRemuneration;
 	}
 	/** Setter
 	 * @param idProfilRemuneration the idProfilRemuneration to set
 	 */
-	public void setIdProfilRemuneration(String idProfilRemuneration) {
-		this.idProfilRemuneration = idProfilRemuneration;
+	public void setCodeProfilRemuneration(String idProfilRemuneration) {
+		this.codeProfilRemuneration = idProfilRemuneration;
 	}
 	
 	

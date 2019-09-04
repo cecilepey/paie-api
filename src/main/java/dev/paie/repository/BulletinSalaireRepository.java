@@ -6,5 +6,6 @@ import dev.paie.entites.BulletinSalaire;
 
 
 public interface BulletinSalaireRepository extends JpaRepository<BulletinSalaire, String>  {
+	
 
 }

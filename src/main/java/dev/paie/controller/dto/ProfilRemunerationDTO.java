@@ -6,6 +6,20 @@ public class ProfilRemunerationDTO {
 	private String code;
 	
 
+	/** Constructeur
+	 * 
+	 */
+	public ProfilRemunerationDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/** Constructeur
+	 * @param code
+	 */
+	public ProfilRemunerationDTO(String code) {
+		super();
+		this.code = code;
+	}
 	/** Getter
 	 * @return the code
 	 */
