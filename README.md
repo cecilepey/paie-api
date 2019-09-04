@@ -2,27 +2,27 @@
 https://paie-api-cecile.herokuapp.com/
 
 
-Ajouter un employÈ : 
+# Ajouter un employ√© : 
 
 
-GET / ajouterEmploye
 
-champ matricule : 
+### champ matricule : 
 
-champ entreprise : 
+### champ entreprise : 
 
-
+GET /entreprises
 Content type : application/json
 
 {
+code + libell√©
 
-"dÈnomination": "dÈnomination entreprise"
+"d√©nomination": "d√©nomination entreprise"
 
 }
 
-RÈponse en cas de succËs : 200
+R√©ponse en cas de succ√®s : 200
 
-RÈponses en cas d'erreur : 
+R√©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -32,18 +32,18 @@ Content-Type: application/json
 }
 
 
-champ profil : 
+### champ profil : 
 
-
+GET /profils_remunerations
 {
-
+code + libell√©
 "code": "code du profil"
 
 }
 
-RÈponse en cas de succËs : 200
+R√©ponse en cas de succ√®s : 200
 
-RÈponses en cas d'erreur : 
+R√©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -53,18 +53,20 @@ Content-Type: application/json
 }
 
 
-grade : 
+### grade : 
+
+GET /grades
 
 {
 
 "code": "code du grade",
-"salaire annuel" : "salaire annuel (nb_heures_base*taux_base*12)"
+"salaire annuel" : "salaire annuel (nb_heures_base*taux_base*12)" --> C'est plus un format d'affichage que de donn√©es, c'est donc plus au front de faire le calcul. 
 
 }
 
-RÈponse en cas de succËs : 200
+R√©ponse en cas de succ√®s : 200
 
-RÈponses en cas d'erreur : 
+R√©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -84,7 +86,7 @@ Content-Type: application/json
 }
 
 
-bouton ajouter
+### bouton ajouter
 
 POST / ajouterCollegue
 
@@ -92,14 +94,14 @@ content type : application/json
 
 {
 "matricule" : "matricule saisi", 
-"dÈnomination": : "dÈnomination entreprise sÈlectionnÈe", 
-"code" : "code profil sÈlectionnÈ", 
-"code" : "code grade sÈlectionnÈ"
+"code entreprise": : "code entreprise s√©lectionn√©e", 
+"code" : "code profil s√©lectionn√©", 
+"code" : "code grade s√©lectionn√©"
 }
 
-RÈponse en cas de succËs : 201
+R√©ponse en cas de succ√®s : 201
 
-RÈponses en cas d'erreur : 
+R√©ponses en cas d'erreur : 
 404
 
 Content-Type: application/json
@@ -107,3 +109,26 @@ Content-Type: application/json
 {
     "message" : "Un champ n'est pas rempli"
 }
+V√©rifier dans collegue API que le matricule existe bien avec RestTemplate.
+
+# Correction : 
+
+# Ecran : ajouter un employ√©
+
+GET /entreprises
+GET /profils_remuneration
+GET /grades
+
+------------------------
+GET /referentiels
+
+POST /remuneration_employes
+
+# Ecran : liste des employ√©s
+
+GET /remuneration_employes
+
+
+
+
+
