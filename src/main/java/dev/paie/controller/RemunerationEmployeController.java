@@ -36,10 +36,6 @@ public class RemunerationEmployeController {
 	@PostMapping
 	public RemunerationEmploye ajouterRemunerationEmploye(@Valid @RequestBody RemunerationEmployeDTOPost remunerationEmployeDTOPost) {
 
-		String matricule = remunerationEmployeDTOPost.getMatricule();
-
-		remunerationEmployeService.validerMatricule(matricule);
-
 		RemunerationEmploye remunerationEmploye = remunerationEmployeService.creerRemunerationEmploye(remunerationEmployeDTOPost);
 
 		return remunerationEmploye;

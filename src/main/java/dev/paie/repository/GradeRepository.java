@@ -20,10 +20,10 @@ import dev.paie.entites.Grade;
 public interface GradeRepository extends JpaRepository<Grade, Integer>{
 	
 	@Query("select new dev.paie.controller.dto.GradeDTO (g.code) from Grade g")
-	List<GradeDTO> findAllWithCodeDTO();
+	List<GradeDTO> findAllWithCode();
 	
 	
 	@Query("select  g from Grade g where g.code = :code")
-	Grade findAllWithCode(@Param("code") String code);
+	Grade findGradeWithCode(@Param("code") String code);
 
 }

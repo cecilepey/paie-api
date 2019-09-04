@@ -1,43 +1,66 @@
 package dev.paie.controller.dto;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-
-import dev.paie.entites.Periode;
-import dev.paie.entites.RemunerationEmploye;
 
 public class BulletinSalaireDTO {
 
 	
-	private ZonedDateTime dateHeureCreation; 
+	private String dateHeureCreation; 
 	
-	private LocalDate dateDebut;
+	private String dateDebut;
 	
-	private LocalDate dateFin; 
+	private String dateFin; 
 	
 	private String matricule; 
 	
-	private BigDecimal salaireBrut; 
+	private String salaireBrut; 
 	
-	private BigDecimal salaireNetImposable; 
+	private String salaireNetImposable; 
 	
-	private BigDecimal salaireNet;
+	private String salaireNet;
 
+	
+	
 	/** Getter
 	 * @return the dateHeureCreation
 	 */
-	public ZonedDateTime getDateHeureCreation() {
+	public String getDateHeureCreation() {
 		return dateHeureCreation;
 	}
 
 	/** Setter
 	 * @param dateHeureCreation the dateHeureCreation to set
 	 */
-	public void setDateHeureCreation(ZonedDateTime dateHeureCreation) {
+	public void setDateHeureCreation(String dateHeureCreation) {
 		this.dateHeureCreation = dateHeureCreation;
 	}
 
+	/** Getter
+	 * @return the dateDebut
+	 */
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	/** Setter
+	 * @param dateDebut the dateDebut to set
+	 */
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	/** Getter
+	 * @return the dateFin
+	 */
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	/** Setter
+	 * @param dateFin the dateFin to set
+	 */
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
 
 	/** Getter
 	 * @return the matricule
@@ -56,72 +79,46 @@ public class BulletinSalaireDTO {
 	/** Getter
 	 * @return the salaireBrut
 	 */
-	public BigDecimal getSalaireBrut() {
+	public String getSalaireBrut() {
 		return salaireBrut;
 	}
 
 	/** Setter
 	 * @param salaireBrut the salaireBrut to set
 	 */
-	public void setSalaireBrut(BigDecimal salaireBrut) {
+	public void setSalaireBrut(String salaireBrut) {
 		this.salaireBrut = salaireBrut;
 	}
 
 	/** Getter
-	 * @return the salaireNetAPayer
+	 * @return the salaireNetImposable
 	 */
-	public BigDecimal getSalaireNetImposable() {
+	public String getSalaireNetImposable() {
 		return salaireNetImposable;
 	}
 
 	/** Setter
-	 * @param salaireNetAPayer the salaireNetAPayer to set
+	 * @param salaireNetImposable the salaireNetImposable to set
 	 */
-	public void setSalaireNetImposable(BigDecimal salaireNetAPayer) {
-		this.salaireNetImposable = salaireNetAPayer;
+	public void setSalaireNetImposable(String salaireNetImposable) {
+		this.salaireNetImposable = salaireNetImposable;
 	}
 
 	/** Getter
 	 * @return the salaireNet
 	 */
-	public BigDecimal getSalaireNet() {
+	public String getSalaireNet() {
 		return salaireNet;
 	}
 
 	/** Setter
 	 * @param salaireNet the salaireNet to set
 	 */
-	public void setSalaireNet(BigDecimal salaireNet) {
+	public void setSalaireNet(String salaireNet) {
 		this.salaireNet = salaireNet;
 	}
 
-	/** Getter
-	 * @return the dateDebut
-	 */
-	public LocalDate getDateDebut() {
-		return dateDebut;
-	}
-
-	/** Setter
-	 * @param dateDebut the dateDebut to set
-	 */
-	public void setDateDebut(LocalDate dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	/** Getter
-	 * @return the dateFin
-	 */
-	public LocalDate getDateFin() {
-		return dateFin;
-	}
-
-	/** Setter
-	 * @param dateFin the dateFin to set
-	 */
-	public void setDateFin(LocalDate dateFin) {
-		this.dateFin = dateFin;
-	} 
+	
 
 	
 	

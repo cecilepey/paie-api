@@ -11,6 +11,22 @@ public class RemunerationEmployeMatricule {
 		return matricule;
 	}
 
+	/** Constructeur
+	 * 
+	 */
+	public RemunerationEmployeMatricule() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/** Constructeur
+	 * @param matricule
+	 */
+	public RemunerationEmployeMatricule(String matricule) {
+		super();
+		this.matricule = matricule;
+	}
+
 	/** Setter
 	 * @param matricule the matricule to set
 	 */

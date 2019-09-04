@@ -48,14 +48,26 @@ public class RemunerationEmployeService {
 	RemunerationEmployeRepository remunerationEmployeRepo;
 
 	public RemunerationEmploye creerRemunerationEmploye(RemunerationEmployeDTOPost remunerationEmployeDTO) {
+		
+		//Validation du matricule
+		String matricule = remunerationEmployeDTO.getMatricule(); 
+		
+		try {
+			RestTemplate rt = new RestTemplate();
+			Collegue result = rt.getForObject("https://cecile-top-collegue.herokuapp.com/collegues/{id}",
+					Collegue.class, matricule);
+		} catch (HttpClientErrorException httpClientErrorException) {
+			throw new CollegueInvalideException("Ce matricule n'existe pas", httpClientErrorException);
+		}
 
+		//Création de l'objet remunerationEmploye
 		RemunerationEmploye remunerationEmploye = new RemunerationEmploye();
 			
 		Entreprise entreprise = entrepriseRepo.findEntrepriseWithCode(remunerationEmployeDTO.getCodeEntreprise()); 
 		
 		remunerationEmploye.setEntreprise(entreprise);
 
-		Grade grade = gradeRepo.findAllWithCode(remunerationEmployeDTO.getCodeGrade()); 
+		Grade grade = gradeRepo.findGradeWithCode(remunerationEmployeDTO.getCodeGrade()); 
 		
 		remunerationEmploye.setGrade(grade);
 
@@ -63,7 +75,7 @@ public class RemunerationEmployeService {
 		
 		remunerationEmploye.setProfilRemuneration(profilRemuneration);
 
-		remunerationEmploye.setMatricule(remunerationEmployeDTO.getMatricule());
+		remunerationEmploye.setMatricule(matricule);
 
 		remunerationEmploye.setDateHeureCreation(ZonedDateTime.now());
 
@@ -73,22 +85,9 @@ public class RemunerationEmployeService {
 
 	}
 
-	public void validerMatricule(String matricule) {
-
-		try {
-			RestTemplate rt = new RestTemplate();
-			Collegue result = rt.getForObject("https://cecile-top-collegue.herokuapp.com/collegues/{id}",
-					Collegue.class, matricule);
-		} catch (HttpClientErrorException httpClientErrorException) {
-			throw new CollegueInvalideException("Ce matricule n'existe pas", httpClientErrorException);
-		}
-
-	}
 
 	public List<RemunerationEmployeDTOGet> afficherRemunerationEmployeDTOGet() {
-
-
-		
+	
 		return remunerationEmployeRepo.findAllWithDateMaticulGrade(); 
 
 	}
@@ -96,21 +95,8 @@ public class RemunerationEmployeService {
 	
 	public List<RemunerationEmployeMatricule> afficherMatricule(){
 		
-		List<RemunerationEmploye> listeRemunerationEmploye = remunerationEmployeRepo.findAll(); 
+		return remunerationEmployeRepo.findAllWithMaticule(); 
 		
-		List<RemunerationEmployeMatricule> listeEmployeMatricules = new ArrayList<>(); 
-		
-		for (RemunerationEmploye remunerationEmploye : listeRemunerationEmploye) {
-			
-			RemunerationEmployeMatricule remunerationEmployeMatricule = new RemunerationEmployeMatricule();
-			
-			remunerationEmployeMatricule.setMatricule(remunerationEmploye.getMatricule());
-			
-			listeEmployeMatricules.add(remunerationEmployeMatricule); 
-			
-		}
-		
-		return listeEmployeMatricules; 
 		
 	}
 	

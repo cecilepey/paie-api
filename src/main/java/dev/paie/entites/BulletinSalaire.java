@@ -27,6 +27,33 @@ public class BulletinSalaire {
 	
 	private ZonedDateTime dateHeureCreation; 
 	
+	
+	
+	/** Constructeur
+	 * 
+	 */
+	public BulletinSalaire() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	/** Constructeur
+	 * @param id
+	 * @param remunerationEmploye
+	 * @param periode
+	 * @param primeExceptionnelle
+	 * @param dateHeureCreation
+	 */
+	public BulletinSalaire(Integer id, RemunerationEmploye remunerationEmploye, Periode periode,
+			BigDecimal primeExceptionnelle, ZonedDateTime dateHeureCreation) {
+		super();
+		this.id = id;
+		this.remunerationEmploye = remunerationEmploye;
+		this.periode = periode;
+		this.primeExceptionnelle = primeExceptionnelle;
+		this.dateHeureCreation = dateHeureCreation;
+	}
 	public RemunerationEmploye getRemunerationEmploye() {
 		return remunerationEmploye;
 	}

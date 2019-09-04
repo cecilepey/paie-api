@@ -22,7 +22,7 @@ public class GradeService {
 	public List<GradeDTO> afficherCode(){
 		
 		
-		return gradeRepo.findAllWithCodeDTO();
+		return gradeRepo.findAllWithCode();
 		
 		
 	}
