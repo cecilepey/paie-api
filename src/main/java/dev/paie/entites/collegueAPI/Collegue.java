@@ -1,8 +1,12 @@
 package dev.paie.entites.collegueAPI;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +15,12 @@ import javax.persistence.Id;
  * @author Cécile Peyras
  * Classe qui gère les collègues
  */
-
+@Entity
 public class Collegue {
 
 	/** id : Integer */
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id; 
 	
 	/** matricule : String */
@@ -34,6 +40,11 @@ public class Collegue {
 	
 	/** photoUrl : String */
 	private String photoUrl;
+	
+	private String motDePasse; 
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String > roles = new ArrayList<>(); 
 
 	
 
@@ -46,16 +57,20 @@ public class Collegue {
 	
 	
 
+
+
 	/** Constructeur
 	 * @param matricule
 	 * @param nom
-	 * @param prenom
+	 * @param prenoms
 	 * @param email
 	 * @param dateDeNaissance
 	 * @param photoUrl
+	 * @param motDePasse
+	 * @param roles
 	 */
 	public Collegue(String matricule, String nom, String prenoms, String email, LocalDate dateDeNaissance,
-			String photoUrl) {
+			String photoUrl, String motDePasse, List<String> roles) {
 		super();
 		this.matricule = matricule;
 		this.nom = nom;
@@ -63,7 +78,11 @@ public class Collegue {
 		this.email = email;
 		this.dateDeNaissance = dateDeNaissance;
 		this.photoUrl = photoUrl;
+		this.motDePasse = motDePasse;
+		this.roles = roles;
 	}
+
+
 
 
 
@@ -185,6 +204,50 @@ public class Collegue {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+
+
+
+
+	/** Getter
+	 * @return the motDePasse
+	 */
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+
+
+
+
+	/** Setter
+	 * @param motDePasse the motDePasse to set
+	 */
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+
+
+
+
+	/** Getter
+	 * @return the roles
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
+
+
+
+
+
+	/** Setter
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	} 
 	
 	
