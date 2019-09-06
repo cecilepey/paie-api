@@ -16,6 +16,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import dev.paie.controller.dto.BulletinSalaireDTO;
 import dev.paie.controller.dto.BulletinSalairePost;
 import dev.paie.controller.dto.PeriodeDTO;
+import dev.paie.controller.dto.visualisation.EntrepriseVisualisation;
 import dev.paie.controller.dto.visualisation.VisualisationBulletinSalaire;
 import dev.paie.entites.BulletinSalaire;
 import dev.paie.entites.Cotisation;
@@ -41,32 +42,28 @@ public class BulletinSalaireService {
 
 	@Autowired
 	PeriodeRepository periodeRepo;
-	
-	@Autowired
-	CalculSalaire calculSalaire; 
 
-	public List<BulletinSalaireDTO> afficherBulletinSalaireDTO() {
-		
-			 
-		 
+	@Autowired
+	CalculSalaire calculSalaire;
+
+	public List<BulletinSalaireDTO> afficherBulletinsSalaireDTO() {
 
 		List<BulletinSalaire> listeBulletinSalaire = bulletinSalaireRepo.findAll();
 
 		List<BulletinSalaireDTO> listeBulletinSalaireDTO = new ArrayList<>();
 
-		for (BulletinSalaire bulletinSalaire : listeBulletinSalaire) {		
+		for (BulletinSalaire bulletinSalaire : listeBulletinSalaire) {
 
-			//Calcul Salaire
-			BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut(); 
-			
-			BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable(); 
-			
-			BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet(); 
-			
-			
-			//Création du DTO
+			// Calcul Salaire
+			BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut();
+
+			BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable();
+
+			BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet();
+
+			// Création du DTO
 			BulletinSalaireDTO bulletinSalaireDTO = new BulletinSalaireDTO();
-			
+
 			bulletinSalaireDTO.setDateHeureCreation(bulletinSalaire.getDateHeureCreation().toString());
 
 			bulletinSalaireDTO.setDateDebut(bulletinSalaire.getPeriode().getDateDebut().toString());
@@ -74,7 +71,6 @@ public class BulletinSalaireService {
 			bulletinSalaireDTO.setDateDebut(bulletinSalaire.getPeriode().getDateFin().toString());
 
 			bulletinSalaireDTO.setMatricule(bulletinSalaire.getRemunerationEmploye().getMatricule());
-			
 
 			bulletinSalaireDTO.setSalaireBrut(salaireBrut.toString());
 
@@ -88,7 +84,7 @@ public class BulletinSalaireService {
 
 		return listeBulletinSalaireDTO;
 
-}
+	}
 
 	public BulletinSalaireDTO creerBulletinSalaire(BulletinSalairePost bulletinSalairePost) {
 
@@ -111,15 +107,14 @@ public class BulletinSalaireService {
 		bulletinSalaire.setDateHeureCreation(ZonedDateTime.now());
 
 		bulletinSalaireRepo.save(bulletinSalaire);
-		
-		//Calcul du salaire
-		
-		BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut(); 
-		
-		BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable(); 
-		
-		BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet(); 
 
+		// Calcul du salaire
+
+		BigDecimal salaireBrut = calculSalaire.calculSalaires(bulletinSalaire).getSalaireBrut();
+
+		BigDecimal salaireNetImposable = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNetImposable();
+
+		BigDecimal salaireNet = calculSalaire.calculSalaires(bulletinSalaire).getSalaireNet();
 
 		// creation du bulletin DTO pour l'affichage
 
@@ -132,7 +127,7 @@ public class BulletinSalaireService {
 		bulletinSalaireDTO.setMatricule(bulletinSalairePost.getMatricule());
 
 		bulletinSalaireDTO.setDateHeureCreation(ZonedDateTime.now().toString());
-		
+
 		bulletinSalaireDTO.setSalaireBrut(salaireBrut.toString());
 
 		bulletinSalaireDTO.setSalaireNetImposable(salaireNetImposable.toString());
@@ -142,15 +137,32 @@ public class BulletinSalaireService {
 		return bulletinSalaireDTO;
 
 	}
-	
-	public VisualisationBulletinSalaire afficherBulletinEmploye() {
-		
-		
-		
-		return null;
-		
-		
-		
+
+	public VisualisationBulletinSalaire afficherBulletinEmploye(String matricule) {
+
+		VisualisationBulletinSalaire visuBulletinSalaire = new VisualisationBulletinSalaire();
+
+		BulletinSalaire bulletin = new BulletinSalaire();
+
+		List<BulletinSalaire> listeBulletins = bulletinSalaireRepo.findAll();
+
+		for (BulletinSalaire bulletinSalaire : listeBulletins) {
+			if (bulletinSalaire.getRemunerationEmploye().getMatricule().equals(matricule)) {
+				bulletin = bulletinSalaire;
+			}
+		}
+
+		List<PeriodeDTO> listePeriodeDTO = periodeRepo.findAllWithoutId();
+
+		for (PeriodeDTO periodeDTO : listePeriodeDTO) {
+			if (periodeDTO.getDateDebut().equals(bulletin.getPeriode().getDateDebut())) {
+				visuBulletinSalaire.setPeriodeDTO(periodeDTO);
+			}
+
+		}
+
+		return visuBulletinSalaire;
+
 	}
-	
+
 }

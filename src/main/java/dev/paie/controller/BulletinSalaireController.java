@@ -23,35 +23,33 @@ import dev.paie.service.BulletinSalaireService;
 @RestController
 @RequestMapping(value = "/bulletins_salaire")
 public class BulletinSalaireController {
-	
+
 	@Autowired
-	BulletinSalaireService bulletinSalaireService; 
-	
-	@GetMapping 
-	public List<BulletinSalaireDTO> afficherBulletins()
-	{
-		
-		List<BulletinSalaireDTO> listeBulletinDTO = bulletinSalaireService.afficherBulletinSalaireDTO(); 
-		
-		return listeBulletinDTO; 
+	BulletinSalaireService bulletinSalaireService;
+
+	@GetMapping
+	public List<BulletinSalaireDTO> afficherBulletins() {
+
+		List<BulletinSalaireDTO> listeBulletinDTO = bulletinSalaireService.afficherBulletinsSalaireDTO();
+
+		return listeBulletinDTO;
 	}
-	
-	@PostMapping 
-	public BulletinSalaireDTO ajouterBulletin (@RequestBody BulletinSalairePost bulletinSalairePost) {
-		
-		BulletinSalaireDTO bulletinSalaireDTO = bulletinSalaireService.creerBulletinSalaire(bulletinSalairePost); 
-		
-		return bulletinSalaireDTO; 
-		
+
+	@PostMapping
+	public BulletinSalaireDTO ajouterBulletin(@RequestBody BulletinSalairePost bulletinSalairePost) {
+
+		BulletinSalaireDTO bulletinSalaireDTO = bulletinSalaireService.creerBulletinSalaire(bulletinSalairePost);
+
+		return bulletinSalaireDTO;
+
 	}
-	
-	@GetMapping(params = "/{matricule}")
+
+	@GetMapping(value = "/{matricule}")
 	public VisualisationBulletinSalaire afficherBulletinEmploye(@PathVariable String matricule) {
-		
-		
-		
-		
-		return null;
-		
+
+		VisualisationBulletinSalaire visuBulletinSalaire = bulletinSalaireService.afficherBulletinEmploye(matricule);
+
+		return visuBulletinSalaire;
+
 	}
 }
